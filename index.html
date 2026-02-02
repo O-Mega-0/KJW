@@ -465,6 +465,13 @@
 
     <script>
         
+        const preloadImages = ['wrong-answer.png', 'dead.png', 'slow.png'];
+        preloadImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        
         const commonQuestions = [
             { q: "김재원의 국적은?", c: "", a: ["대한민국"] },
             { q: "김재원의 혈액형은?", c: "(단, 영어만 대문자로 쓴다)", a: ["A"] },
@@ -508,7 +515,6 @@
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
         function openDifficulty() { document.getElementById('diff-modal').classList.remove('hidden'); }
 
-        
         const volSlider = document.getElementById('vol-slider');
         const audioIds = ['bgm', 'sfx-wrong', 'sfx-dead', 'sfx-ending', 'sfx-volume'];
 
@@ -519,14 +525,11 @@
             });
         }
 
-        
         setAudioVolume(0.5);
 
-        
         volSlider.addEventListener('input', function() {
             const vol = this.value;
             setAudioVolume(vol);
-            
             
             const volSfx = document.getElementById('sfx-volume');
             if (volSfx) {
@@ -540,7 +543,6 @@
             closeModal('diff-modal');
             document.getElementById('ending-screen').classList.add('hidden');
             
-            
             const volSfx = document.getElementById('sfx-volume');
             if (volSfx) {
                 volSfx.pause();
@@ -548,12 +550,10 @@
             }
 
             currentMode = mode;
-            currentTimeLimit = 60; 
-            hasErrorOccurred = false; 
+            currentTimeLimit = 60;
+            hasErrorOccurred = false;
 
-            
             const bgm = document.getElementById('bgm');
-            
             bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3";
             bgm.loop = true;
             bgm.play().catch(e => console.log("Audio play failed:", e));
@@ -577,7 +577,7 @@
         function loadQuestion() {
             if (isDead) return;
             clearInterval(timerInterval);
-            timeLeft = currentTimeLimit; 
+            timeLeft = currentTimeLimit;
             updateTimerDisplay();
             timerInterval = setInterval(timerTick, 1000);
 
@@ -629,7 +629,6 @@
             const inputEl = document.getElementById('answer-input');
             inputEl.value = '';
             
-            
             if (!hasErrorOccurred) {
                 hasErrorOccurred = true;
                 const bgm = document.getElementById('bgm');
@@ -657,7 +656,7 @@
                     showJumpScare("slow.png", false);
                 } else {
                     
-                    showJumpScare("wrong_answer.png", false);
+                    showJumpScare("wrong-answer.png", false);
                 }
             }
         }
@@ -685,9 +684,7 @@
             document.getElementById('game-over-screen').style.display = 'none';
             lives = 3;
             isDead = false;
-            
             currentTimeLimit = 60; 
-            
             loadQuestion();
         }
 
