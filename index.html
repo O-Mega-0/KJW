@@ -174,11 +174,11 @@
         }
         
         .dark-filter {
-            filter: brightness(0.6);
+            filter: brightness(0.85); 
         }
         
         .dark-filter #quiz-paper {
-            filter: brightness(1.58333);
+            filter: brightness(1.12); 
         }
 
         #damage-overlay {
@@ -245,10 +245,11 @@
         }
 
         #cheat-warning {
-            color: #d1d5db;/
+            color: #d1d5db; 
         }
+
         .dark-filter #cheat-warning {
-            color: #888888;
+            color: #888888; 
         }
 
         .question-area {
@@ -436,7 +437,8 @@
             <div class="s-desk"></div>
         </div>
         <div class="absolute top-10 left-10">
-<h1 class="font-bold tracking-widest text-white drop-shadow-lg" style="font-size: 10rem; text-shadow: 10px 10px 0px #000;">𝐾𝐽𝑊</h1>
+            
+            <h1 class="font-bold tracking-widest text-white drop-shadow-lg" style="font-size: 10rem; text-shadow: 10px 10px 0px #000;">𝐾𝐽𝑊</h1>
         </div>
         
         <div class="main-menu">
@@ -494,7 +496,6 @@
                             </div>
                         </div>
                         <p id="cheat-warning" style="position: absolute; bottom: 5px; right: 8px; font-size: 8px; margin: 0;">20% 확률로 가짜입니다.</p>
-                        <p style="position: absolute; bottom: 5px; right: 8px; font-size: 8px; color: #d1d5db; margin: 0;">20% 확률로 가짜입니다.</p>
                     </div>
                 </div>
             </div>
@@ -556,13 +557,20 @@
                 q: "김재원 웃음참기 콘텐츠에서 치트키는?", 
                 c: "(단, 한글로 쓴다.)", 
                 a: [
-                    "닥터유", "닥터유님", "닥터유 선생님", "닥터유쌤", 
-                    "닥터유 영상", "닥터유님 영상", "닥터유 선생님 영상", 
-                    "닥터유 유튜브", "닥터유님 유튜브", "닥터유 선생님 유튜브", "닥터유쌤 유튜브", 
-                    "유튜브 닥터유와 함께", 
-                    "닥터유 유튜브 영상", "닥터유님 유튜브 영상", "닥터유 선생님 유튜브 영상", "닥터유쌤 유튜브 영상",
-                    "유튜브 닥터유", "유튜브 닥터유님", "유튜브 닥터유 선생님", "유튜브 닥터유쌤",
+                     "닥터유", "닥터유님", "닥터유 선생님", "닥터유쌤", 
+                     "닥터유", "닥터유님", "닥터유 선생님", "닥터유쌤", 
+                     "닥터유 영상", "닥터유님 영상", "닥터유 선생님 영상", 
+                     "닥터유 영상", "닥터유님 영상", "닥터유 선생님 영상", 
+                     "닥터유 유튜브", "닥터유님 유튜브", "닥터유 선생님 유튜브", "닥터유쌤 유튜브", 
+                     "닥터유 유튜브", "닥터유님 유튜브", "닥터유 선생님 유튜브", "닥터유쌤 유튜브", 
+                     "유튜브 닥터유와 함께", 
+                     "유튜브 닥터유와 함께", 
+                     "닥터유 유튜브 영상", "닥터유님 유튜브 영상", "닥터유 선생님 유튜브 영상", "닥터유쌤 유튜브 영상",
+                     "닥터유 유튜브 영상", "닥터유님 유튜브 영상", "닥터유 선생님 유튜브 영상", "닥터유쌤 유튜브 영상",
+                     "유튜브 닥터유", "유튜브 닥터유님", "유튜브 닥터유 선생님", "유튜브 닥터유쌤",
+                     "유튜브 닥터유", "유튜브 닥터유님", "유튜브 닥터유 선생님", "유튜브 닥터유쌤",
                     "유튜브 닥터유 영상", "유튜브 닥터유님 영상", "유튜브 닥터유 선생님 영상", "유튜브 닥터유쌤 영상", "닥터유 유태우", "유태우",
+                    "유튜브 닥터유 영상", "유튜브 닥터유님 영상", "유튜브 닥터유 선생님 영상", "유튜브 닥터유쌤 영상"
                     "유태우님", "유태우 선생님", "유태우쌤", "유태우 영상", "유태우님 영상", "유태우 선생님 영상",
                     "유태우 유튜브", "유태우님 유튜브", "유태우 선생님 유튜브", "유태우쌤 유튜브"
                 ],
@@ -592,7 +600,7 @@
 
         let currentQuestions = [];
         let currentIndex = 0;
-        let lives = 2;
+        let lives = 5; 
         let timerInterval;
         let timeLeft = 60;
         let currentTimeLimit = 60; 
@@ -644,7 +652,7 @@
             currentMode = mode;
             currentTimeLimit = 60;
             hasErrorOccurred = false;
-            lives = 2; 
+            lives = 5; 
             cheatCount = 0;
             caughtCount = 0;
             updateDamageVisuals();
@@ -748,8 +756,12 @@
             const sfx = document.getElementById(soundId);
             sfx.currentTime = 0;
             sfx.play();
+
+            
+            
             const imageToShow = isGameOver ? "dead.png" : "caught.png";
             showJumpScare(imageToShow, isGameOver);
+            
         }
 
         function timerTick() {
@@ -828,13 +840,16 @@
             const damageOverlay = document.getElementById('damage-overlay');
             const gameContent = document.getElementById('game-content');
             
-            if (lives < 2) { 
+            
+            if (lives < 5) { 
                 gameContent.classList.add('dark-filter');
             } else {
                 gameContent.classList.remove('dark-filter');
             }
 
-            const opacity = (2 - lives) * 0.5;
+            
+            
+            const opacity = (5 - lives) * 0.2;
             damageOverlay.style.opacity = Math.max(0, opacity);
         }
 
@@ -864,7 +879,7 @@
 
         function retryGame() {
             document.getElementById('game-over-screen').style.display = 'none';
-            lives = 2; 
+            lives = 5; 
             isDead = false;
             currentTimeLimit = 60;
             cheatCount = 0;
@@ -892,9 +907,12 @@
         function showClear() {
             clearInterval(timerInterval);
             
+            
+            
             document.getElementById('damage-overlay').style.opacity = '0';
             document.getElementById('game-content').classList.remove('dark-filter');
             
+
             const bgm = document.getElementById('bgm');
             const endingSfx = document.getElementById('sfx-ending');
             bgm.pause();
@@ -917,16 +935,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
