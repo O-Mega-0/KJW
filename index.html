@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <link rel="icon" type="image/png" href="/favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𝐾𝐽𝑊</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <style>
@@ -28,7 +28,6 @@
             overflow: hidden;
         }
 
-        
         #start-scene {
             background: radial-gradient(circle at 50% 50%, #2c3e50, #000);
             z-index: 10;
@@ -88,7 +87,6 @@
             border-radius: 10px; z-index: 3;
         }
 
-        
         .main-menu {
             position: absolute; right: 5%; bottom: 15%;
             display: flex; flex-direction: column; gap: 20px;
@@ -109,7 +107,6 @@
             background: white; color: black; transform: scale(1.05);
         }
 
-        
         .volume-control {
             display: flex;
             flex-direction: column;
@@ -165,8 +162,6 @@
             width: 100%; height: 4px; background: rgba(255, 255, 255, 0.5);
         }
 
-
-        
         #game-scene {
             display: none;
             background: black; 
@@ -178,17 +173,14 @@
             transition: filter 0.5s ease;
         }
         
-        
         .dark-filter {
-            filter: brightness(0.6); 
+            filter: brightness(0.6);
         }
-        
         
         .dark-filter #quiz-paper {
             filter: brightness(1.58333);
         }
 
-        
         #damage-overlay {
             position: absolute;
             top: 0; left: 0;
@@ -241,7 +233,6 @@
             text-align: center;
         }
 
-        
         #timer-ui {
             position: absolute;
             top: 20px; right: 20px;
@@ -262,7 +253,6 @@
             animation: pulse 1s infinite;
         }
 
-        
         .modal-overlay {
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
@@ -287,7 +277,6 @@
         }
         .diff-btn:hover { border-color: white; background: #333; }
 
-        
         #jumpscare-overlay {
             position: absolute; top: 0; left: 0;
             width: 100vw; height: 100vh;
@@ -306,7 +295,7 @@
         #game-over-screen {
             position: absolute; top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(100, 0, 0, 0.9); 
+            background: rgba(100, 0, 0, 0.9);
             z-index: 90;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
@@ -348,7 +337,6 @@
     </style>
 </head>
 <body>
-    
     <audio id="bgm" loop>
         <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3" type="audio/mp3">
     </audio>
@@ -365,12 +353,10 @@
         <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3" type="audio/mp3">
     </audio>
 
-    
     <div id="jumpscare-overlay" class="hidden">
         <img id="jumpscare-img" src="" alt="scare">
     </div>
 
-    
     <div id="game-over-screen">
         <h1 class="text-7xl font-bold text-black mb-10 drop-shadow-lg" style="text-shadow: 0 0 10px red;">당신은 죽었습니다</h1>
         <div>
@@ -379,7 +365,6 @@
         </div>
     </div>
 
-    
     <div id="start-scene" class="scene">
         <div class="wall-bg">
             <div class="window">
@@ -415,12 +400,9 @@
         </div>
     </div>
 
-    
     <div id="game-scene" class="scene">
-        
         <div id="damage-overlay"></div>
 
-        
         <div id="game-content">
             <div id="timer-ui">60</div>
             
@@ -448,7 +430,6 @@
         </div>
     </div>
 
-    
     <div id="howto-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <h2 class="text-3xl text-yellow-400 mb-6 font-bold">환영합니다!</h2>
@@ -459,7 +440,6 @@
         </div>
     </div>
 
-    
     <div id="diff-modal" class="modal-overlay hidden">
         <div class="modal-content" style="max-width: 800px;">
             <h2 class="text-3xl mb-10 font-bold">난이도 선택</h2>
@@ -476,7 +456,6 @@
         </div>
     </div>
 
-    
     <div id="ending-screen" class="modal-overlay hidden">
         <div class="text-center">
             <h1 class="text-6xl text-yellow-400 mb-4 font-bold animate-bounce">축하합니다!</h1>
@@ -484,7 +463,6 @@
             <div class="flex flex-col gap-4 justify-center items-center">
                 <button onclick="location.reload()" class="border-2 border-white text-white px-10 py-3 text-xl hover:bg-white hover:text-black font-bold w-80">처음으로</button>
                 <button id="other-diff-btn" class="border-2 border-gray-400 text-gray-300 px-10 py-3 text-xl hover:bg-gray-700 hover:text-white font-bold w-80">
-                    
                 </button>
             </div>
         </div>
@@ -503,7 +481,19 @@
             { q: "김재원의 MBTI는?", c: "(단, 대문자로 쓴다)", a: ["ENFP"] },
             { q: "김재원의 키는?", c: "(단, 숫자만 쓴다)", a: ["174"] },
             { q: "김재원의 생일은?", c: "(단, YYYYMMDD로 쓴다)", a: ["19980622"] },
-            { q: "김재원 웃음참기 콘텐츠에서 치트키는?", c: "(단, 한글로 쓴다)", a: ["닥터유", "닥터유 선생님"] },
+            { 
+                q: "김재원 웃음참기 콘텐츠에서 치트키는?", 
+                c: "(단, 한글로 쓴다)", 
+                a: [
+                    "닥터유", "닥터유님", "닥터유 선생님", "닥터유쌤", 
+                    "닥터유 영상", "닥터유님 영상", "닥터유 선생님 영상", 
+                    "닥터유 유튜브", "닥터유님 유튜브", "닥터유 선생님 유튜브", "닥터유쌤 유튜브", 
+                    "유튜브 닥터유와 함께", 
+                    "닥터유 유튜브 영상", "닥터유님 유튜브 영상", "닥터유 선생님 유튜브 영상", "닥터유쌤 유튜브 영상",
+                    "유튜브 닥터유", "유튜브 닥터유님", "유튜브 닥터유 선생님", "유튜브 닥터유쌤",
+                    "유튜브 닥터유 영상", "유튜브 닥터유님 영상", "유튜브 닥터유 선생님 영상", "유튜브 닥터유쌤 영상"
+                ] 
+            },
             { q: "김재원의 오너 캐릭터의 이름은?", c: "", a: ["김재일"] },
             { q: "김재원의 즐거운 세상 채널의 URL은<br>https://www.youtube.com/ (문자열 𝐴) 이다.<br>이때 문자열 𝐴의 글자 수는?", c: "", a: ["15"] },
             { q: "김재원이 다녔던 학교의 수는?", c: "", a: ["4"] },
@@ -528,7 +518,7 @@
 
         let currentQuestions = [];
         let currentIndex = 0;
-        let lives = 2; 
+        let lives = 2;
         let timerInterval;
         let timeLeft = 60;
         let currentTimeLimit = 60; 
@@ -633,10 +623,12 @@
 
         function checkAnswer() {
             if (isDead) return;
-            const input = document.getElementById('answer-input').value.trim();
+            const input = document.getElementById('answer-input').value.trim().replace(/\s+/g, '');
             const correctAnswers = currentQuestions[currentIndex].a;
             
-            if (correctAnswers.includes(input)) {
+            const isCorrect = correctAnswers.some(ans => ans.replace(/\s+/g, '') === input);
+
+            if (isCorrect) {
                 currentIndex++;
                 if (currentIndex >= currentQuestions.length) {
                     showClear();
@@ -678,7 +670,6 @@
                 wrongSfx.play();
                 
                 if (reason === "timeover") {
-                    
                     currentTimeLimit = Math.max(1, Math.floor(currentTimeLimit / 4));
                     showJumpScare("slow.png", false);
                 } else {
@@ -697,7 +688,6 @@
                 gameContent.classList.remove('dark-filter');
             }
 
-            
             const opacity = (2 - lives) * 0.5;
             damageOverlay.style.opacity = Math.max(0, opacity);
         }
