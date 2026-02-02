@@ -270,9 +270,10 @@
             align-items: center;
             justify-content: center;
         }
+        
         #jumpscare-img {
             width: 100%; height: 100%;
-            object-fit: contain;
+            object-fit: contain; 
         }
 
         #game-over-screen {
@@ -321,13 +322,13 @@
 </head>
 <body>
     
+    
     <audio id="bgm" loop>
-        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Background-Sound/main/Background%20Sound.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3" type="audio/mp3">
     </audio>
     <audio id="sfx-wrong">
         <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Wrong-Answer/main/Wrong%20Answer.mp3" type="audio/mp3">
     </audio>
-    
     <audio id="sfx-dead">
         <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Dead/main/dead.mp3" type="audio/mp3">
     </audio>
@@ -498,8 +499,10 @@
         let lives = 3;
         let timerInterval;
         let timeLeft = 60;
+        let currentTimeLimit = 60; 
         let isDead = false;
         let currentMode = '';
+        let hasErrorOccurred = false; 
 
         function openHowTo() { document.getElementById('howto-modal').classList.remove('hidden'); }
         function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
@@ -527,7 +530,6 @@
             
             const volSfx = document.getElementById('sfx-volume');
             if (volSfx) {
-                
                 if (volSfx.paused) {
                     volSfx.play().catch(e => {}); 
                 }
@@ -546,9 +548,14 @@
             }
 
             currentMode = mode;
+            currentTimeLimit = 60; 
+            hasErrorOccurred = false; 
 
             
             const bgm = document.getElementById('bgm');
+            
+            bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3";
+            bgm.loop = true;
             bgm.play().catch(e => console.log("Audio play failed:", e));
 
             document.getElementById('start-scene').style.opacity = '0';
@@ -570,7 +577,7 @@
         function loadQuestion() {
             if (isDead) return;
             clearInterval(timerInterval);
-            timeLeft = 60;
+            timeLeft = currentTimeLimit; 
             updateTimerDisplay();
             timerInterval = setInterval(timerTick, 1000);
 
@@ -612,7 +619,7 @@
                     loadQuestion();
                 }
             } else {
-                handleWrong();
+                handleWrong("wrong");
             }
         }
 
@@ -621,6 +628,14 @@
             lives--;
             const inputEl = document.getElementById('answer-input');
             inputEl.value = '';
+            
+            
+            if (!hasErrorOccurred) {
+                hasErrorOccurred = true;
+                const bgm = document.getElementById('bgm');
+                bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Background-Sound/main/Background%20Sound.mp3";
+                bgm.play().catch(e => {});
+            }
             
             document.getElementById('game-scene').classList.add('shake');
             setTimeout(() => document.getElementById('game-scene').classList.remove('shake'), 500);
@@ -635,7 +650,15 @@
                 const wrongSfx = document.getElementById('sfx-wrong');
                 wrongSfx.currentTime = 0;
                 wrongSfx.play();
-                showJumpScare("wrong_answer.png", false);
+                
+                if (reason === "timeover") {
+                    
+                    currentTimeLimit = Math.max(1, Math.floor(currentTimeLimit / 2));
+                    showJumpScare("slow.png", false);
+                } else {
+                    
+                    showJumpScare("wrong_answer.png", false);
+                }
             }
         }
 
@@ -662,6 +685,9 @@
             document.getElementById('game-over-screen').style.display = 'none';
             lives = 3;
             isDead = false;
+            
+            currentTimeLimit = 60; 
+            
             loadQuestion();
         }
 
