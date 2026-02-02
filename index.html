@@ -884,6 +884,9 @@
         function showClear() {
             clearInterval(timerInterval);
             
+            document.getElementById('damage-overlay').style.opacity = '0';
+            document.getElementById('game-content').classList.remove('dark-filter');
+            
             const bgm = document.getElementById('bgm');
             const endingSfx = document.getElementById('sfx-ending');
             bgm.pause();
@@ -906,21 +909,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
