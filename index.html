@@ -740,8 +740,8 @@
             const sfx = document.getElementById(soundId);
             sfx.currentTime = 0;
             sfx.play();
-
-            showJumpScare("caught.png", isGameOver);
+            const imageToShow = isGameOver ? "dead.png" : "caught.png";
+            showJumpScare(imageToShow, isGameOver);
         }
 
         function timerTick() {
@@ -909,6 +909,7 @@
     </script>
 </body>
 </html>
+
 
 
 
