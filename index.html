@@ -539,11 +539,11 @@
         });
 
         const commonQuestions = [
-            { q: "김재원의 국적은?", c: "", a: ["대한민국"], fa: "대한민국" },
-            { q: "김재원의 혈액형은?", c: "(단, 영어만 대문자로 쓴다)", a: ["A"], fa: "A" },
-            { q: "김재원의 MBTI는?", c: "(단, 대문자로 쓴다)", a: ["ENFP"], fa: "ENFP" },
+            { q: "김재원의 국적은?", c: "", a: ["대한민국"], fa: "미국" },
+            { q: "김재원의 혈액형은?", c: "(단, 영어만 대문자로 쓴다)", a: ["A"], fa: "O" },
+            { q: "김재원의 MBTI는?", c: "(단, 대문자로 쓴다)", a: ["ENFP"], fa: "ENTP" },
             { q: "김재원의 키는?", c: "(단, 숫자만 쓴다)", a: ["174"], fa: "175" },
-            { q: "김재원의 생일은?", c: "(단, 8자리로 쓴다)", a: ["19980622"], fa: "19880622" },
+            { q: "김재원의 생일은?", c: "(단, YYYYMMDD로 쓴다)", a: ["19980622"], fa: "19980623" },
             { 
                 q: "김재원 웃음참기 콘텐츠에서 치트키는?", 
                 c: "(단, 한글로 쓴다)", 
@@ -556,7 +556,7 @@
                     "유튜브 닥터유", "유튜브 닥터유님", "유튜브 닥터유 선생님", "유튜브 닥터유쌤",
                     "유튜브 닥터유 영상", "유튜브 닥터유님 영상", "유튜브 닥터유 선생님 영상", "유튜브 닥터유쌤 영상"
                 ],
-                fa: "닥터U"
+                fa: "닥터강"
             },
             { q: "김재원의 오너 캐릭터의 이름은?", c: "", a: ["김재일"], fa: "김재일" },
             { q: "김재원의 즐거운 세상 채널의 URL은<br>https://www.youtube.com/ (문자열 𝐴) 이다.<br>이때 문자열 𝐴의 글자 수는?", c: "", a: ["15"], fa: "16" },
@@ -565,7 +565,7 @@
         ];
 
         const normalQuestions = [
-            { q: "김재일 입술의 HEX 코드는?", c: "(단, #은 쓰지 않으며, 대문자로 쓴다.)", a: ["EC1C24"], fa: "E81D26" },
+            { q: "김재일 입술의 HEX 코드는?", c: "(단, #은 쓰지 않으며, 대소문자를 구분한다.)", a: ["EC1C24"], fa: "E81D26" },
             { q: "김재원이 탄생한 나라의 국가의 작곡가는?", c: "", a: ["안익태"], fa: "홍난파" },
             { q: "김재원의 팬카페 <김재원 펜카페임>의 개설 날짜는?", c: "(단, 8자리로 쓴다.)", a: ["20161226"], fa: "20161225" },
             { q: "2021년 8월 20일에 김재원의 즐거운 세상 채널에 올라온 영상의 길이를 𝑎분 𝑏초라고 하자. (8,2)<br>이때 방정식 3𝑎 + 2𝑏 = 𝑎𝑏 + 𝑏𝑥에서 𝑥의 값은?", c: "", a: ["6"], fa: "5" },
@@ -859,14 +859,26 @@
             currentTimeLimit = 60;
             cheatCount = 0;
             caughtCount = 0;
+            hasErrorOccurred = false;
+            currentIndex = 0; 
+
+            const specificQuestions = currentMode === 'normal' ? normalQuestions : hardQuestions;
+            currentQuestions = [...commonQuestions, ...specificQuestions];
+
             updateDamageVisuals();
+
+            const bgm = document.getElementById('bgm');
+            bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3";
+            bgm.loop = true;
+            bgm.play().catch(e => console.log("Audio play failed:", e));
+
             loadQuestion();
         }
 
         document.getElementById('answer-input').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') checkAnswer();
         });
-
+        
         function showClear() {
             clearInterval(timerInterval);
             
