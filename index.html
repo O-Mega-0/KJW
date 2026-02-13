@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>𝐾𝑖𝑚 𝐽𝑎𝑒 𝑊𝑜𝑛 𝐺𝑎𝑚𝑒</title>
     
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
     <style>
@@ -395,19 +395,19 @@
 </head>
 <body>
     <audio id="bgm" loop>
-        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/o-mega-0/KJW/main/SoundEffect/background.mp3" type="audio/mp3">
     </audio>
     <audio id="sfx-wrong">
-        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Wrong-Answer/main/Wrong%20Answer.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/o-mega-0/KJW/main/SoundEffect/wrong.mp3" type="audio/mp3">
     </audio>
     <audio id="sfx-dead">
-        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Dead/main/dead.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/o-mega-0/KJW/main/SoundEffect/dead.mp3" type="audio/mp3">
     </audio>
     <audio id="sfx-ending">
-        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Ending/main/Ending.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Ending/main/SoundEffect/end.mp3" type="audio/mp3">
     </audio>
     <audio id="sfx-volume">
-        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3" type="audio/mp3">
+        <source src="https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/SoundEffect/volume.mp3" type="audio/mp3">
     </audio>
 
     <div id="jumpscare-overlay" class="hidden">
@@ -542,7 +542,7 @@
     </div>
 
     <script>
-        const preloadImages = ['wrong-answer.png', 'dead.png', 'slow.png', 'caught.png'];
+        const preloadImages = ['images/wrong.png', 'images/dead.png', 'images/slow.png', 'images/caught.png'];
         preloadImages.forEach(src => {
             const img = new Image();
             img.src = src;
@@ -650,7 +650,7 @@
             updateDamageVisuals();
 
             const bgm = document.getElementById('bgm');
-            bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3";
+            bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW/main/SoundEffect/volume.mp3";
             bgm.loop = true;
             bgm.play().catch(e => console.log("Audio play failed:", e));
 
@@ -730,7 +730,7 @@
             if (!hasErrorOccurred) {
                 hasErrorOccurred = true;
                 const bgm = document.getElementById('bgm');
-                bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Background-Sound/main/Background%20Sound.mp3";
+                bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW/main/SoundEffect/background.mp3";
                 bgm.play().catch(e => {});
             }
 
@@ -751,7 +751,7 @@
 
             
             
-            const imageToShow = isGameOver ? "dead.png" : "caught.png";
+            const imageToShow = isGameOver ? "images/dead.png" : "images/caught.png";
             showJumpScare(imageToShow, isGameOver);
             
         }
@@ -801,7 +801,7 @@
             if (!hasErrorOccurred) {
                 hasErrorOccurred = true;
                 const bgm = document.getElementById('bgm');
-                bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Background-Sound/main/Background%20Sound.mp3";
+                bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW/main/SoundEffect/background.mp3";
                 bgm.play().catch(e => {});
             }
             
@@ -813,7 +813,7 @@
                 const deadSfx = document.getElementById('sfx-dead');
                 deadSfx.currentTime = 0;
                 deadSfx.play();
-                showJumpScare("dead.png", true);
+                showJumpScare("images/dead.png", true);
             } else {
                 const wrongSfx = document.getElementById('sfx-wrong');
                 wrongSfx.currentTime = 0;
@@ -859,7 +859,7 @@
             } else {
                 setTimeout(() => {
                     overlay.classList.add('hidden');
-                    if (imgSrc === 'caught.png') {
+                    if (imgSrc === 'images/caught.png') {
                         closeCheatSheet();
                         timerInterval = setInterval(timerTick, 1000); 
                     } else {
@@ -885,7 +885,7 @@
             updateDamageVisuals();
 
             const bgm = document.getElementById('bgm');
-            bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW_Volume/main/Volume.mp3";
+            bgm.src = "https://raw.githubusercontent.com/o-mega-0/KJW/main/SoundEffect/volume.mp3";
             bgm.loop = true;
             bgm.play().catch(e => console.log("Audio play failed:", e));
 
@@ -927,3 +927,4 @@
     </script>
 </body>
 </html>
+
